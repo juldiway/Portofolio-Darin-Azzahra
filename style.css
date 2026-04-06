@@ -154,6 +154,41 @@ nav ul li a:hover {
     margin-bottom: 2rem;
 }
 
+.about-content {
+  display: flex;
+  flex-direction: column; /* Menyusun konten secara vertikal */
+  align-items: flex-start; /* Menjajajkan konten ke kiri */
+  max-width: 600px;
+  margin: 0 auto; /* Menengahkan container di halaman */
+  gap: 20px; /* Memberikan jarak otomatis antar elemen di dalamnya */
+}
+
+.description {
+  line-height: 1.6;
+  color: #333;
+  margin: 0; /* Menghapus margin bawaan agar gap lebih akurat */
+}
+
+.social-container {
+  display: flex;
+  gap: 12px; /* Jarak antar tombol secara horizontal */
+  margin-top: 10px; /* Jarak tambahan dari teks deskripsi */
+}
+
+.social-btn {
+  text-decoration: none;
+  padding: 8px 20px;
+  border: 2px solid #000;
+  color: #000;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.social-btn:hover {
+  background-color: #000;
+  color: #fff;
+}
+
 /* ====================================================
    SKILL SECTION
    ==================================================== */
