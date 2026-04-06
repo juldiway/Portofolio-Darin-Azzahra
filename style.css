@@ -1,4 +1,6 @@
-/* Reset & Base Styles */
+/* ====================================================
+   RESET & BASE STYLES
+   ==================================================== */
 * {
     margin: 0;
     padding: 0;
@@ -10,13 +12,23 @@ body {
     background-color: #fffafb; 
     color: #333;
     line-height: 1.6;
+    overflow-x: hidden; /* Mencegah scroll ke samping */
 }
 
-/* Navigation */
+img {
+    max-width: 100%; /* Mencegah gambar keluar dari container */
+    height: auto;
+    border-radius: 10px; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* ====================================================
+   NAVIGATION
+   ==================================================== */
 nav {
     display: flex;
     background-color: #fcedd8;
-    border-color: #9E182B;
+    border-bottom: 3px solid #9E182B; /* Perbaikan border */
     justify-content: space-between;
     padding: 2rem 10%;
     align-items: center;
@@ -31,6 +43,7 @@ nav {
 nav ul {
     display: flex;
     list-style: none;
+    flex-wrap: wrap; /* Agar bisa turun ke bawah jika sempit */
 }
 
 nav ul li {
@@ -41,21 +54,23 @@ nav ul li a {
     text-decoration: none;
     color: #9E182B;
     font-weight: 700;
-    font-size: 1.5rem;
+    font-size: 1.2rem; /* Dikecilkan sedikit agar lebih rapi */
     transition: 0.3s;
-    border: 15px;
-    border-color: #9E182B;
 }
 
 nav ul li a:hover {
     color: #ffcc00; 
 }
 
-/* Hero Section */
+/* ====================================================
+   HERO SECTION
+   ==================================================== */
 .hero {
+    position: relative; /* Ditambahkan agar animasi tidak bocor */
     text-align: center;
     padding: 100px 10%;
     background-color: #ffd464;
+    overflow: hidden;
 }
 
 .hero h1 {
@@ -63,11 +78,15 @@ nav ul li a:hover {
     font-weight: 900;
     line-height: 1.2;
     margin-bottom: 1rem;
+    position: relative;
+    z-index: 2;
 }
 
-.hero-content p {
-    font-size: 2.0rem;
-    font-weight: 700
+.hero p {
+    font-size: 1.5rem; /* Disesuaikan */
+    font-weight: 700;
+    position: relative;
+    z-index: 2;
 }
 
 .highlight {
@@ -87,7 +106,9 @@ nav ul li a:hover {
     z-index: -1;
 }
 
-/* About Section Styles */
+/* ====================================================
+   ABOUT SECTION
+   ==================================================== */
 .about-section {
     padding: 100px 10%;
     background-color: #fcedd8; 
@@ -110,6 +131,7 @@ nav ul li a:hover {
     border: 5px solid #ff4d94; 
     padding: 5px;
     background: white;
+    box-shadow: none; /* Menghapus shadow dari base img */
 }
 
 .profile-frame img {
@@ -117,6 +139,7 @@ nav ul li a:hover {
     height: 100%;
     border-radius: 50%;
     object-fit: cover;
+    box-shadow: none; /* Mencegah shadow menumpuk */
 }
 
 .about-content h2 {
@@ -125,17 +148,15 @@ nav ul li a:hover {
     margin-bottom: 1.5rem;
 }
 
-.pink-text {
-    color: #ff4d94;
-}
-
 .about-content p {
-    font-size: 1.3rem;
+    font-size: 1.1rem; /* Disesuaikan agar mudah dibaca */
     color: #555;
     margin-bottom: 2rem;
 }
 
-/* Skill Section Styles */
+/* ====================================================
+   SKILL SECTION
+   ==================================================== */
 .skill-section {
     padding: 100px 10%;
     background-color: #fbf4eb; 
@@ -157,65 +178,48 @@ nav ul li a:hover {
 }
 
 .skill-content h3 {
-    font-size: 2.0rem;
+    font-size: 1.8rem;
     font-weight: 900;
-    margin-bottom: 1.5rem;
-    color: #ff4d94
-}
-
-.pink-text {
-    color: #eafe77;
+    margin-bottom: 1rem;
+    margin-top: 1.5rem;
+    color: #ff4d94;
 }
 
 .skill-content p {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     color: #555;
     margin-bottom: 2rem;
 }
 
 .image-container {
-  display:inline-flex;     
-  gap: 20px;         
+    display: flex; /* Ganti dari inline-flex ke flex */
+    flex-wrap: wrap; /* Agar gambar turun ke bawah di HP */
+    justify-content: center;
+    gap: 20px;         
 }
 
 .image-container img {
-  width: 150px;
-  border-radius: 10px;  
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2); 
+    width: 100px; /* Diperkecil sedikit agar muat berjajar */
 }
 
-.profile-frame {
-    width: 150px;
-    height: 150px;
-    margin: 0 auto 2rem;
-    border-radius: 50%;
-    border: 5px solid #ff4d94; 
-    padding: 5px;
-    background: white;
-}
-
-/* Work Section Style */
+/* ====================================================
+   WORK / PORTFOLIO SECTION
+   ==================================================== */
 .work-section {
     background-color: #fcedd8;
 }
 
 .work-content h2 {
     text-align: center;
-    padding: 100px 10%;
+    padding: 100px 10% 50px 10%;
     color: #9E182B;
     font-size: 2.5rem;
     font-weight: 900;
-    margin-bottom: 1.5rem;
-}
-
-/* Portfolio Grid */
-.portofolio-section{
-    background-color: #fcedd8;
 }
 
 .portfolio-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsif grid */
     gap: 2rem;
     padding: 0 10% 100px 10%;
 }
@@ -225,8 +229,10 @@ nav ul li a:hover {
     overflow: hidden;
     transition: transform 0.3s ease;
     cursor: pointer;
-    height: 700px;
-    width: 500px;
+    width: 100%; /* PERBAIKAN: Hapus fixed width 500px */
+    height: 100%; /* PERBAIKAN: Hapus fixed height 700px */
+    display: flex;
+    flex-direction: column;
 }
 
 .project-card:hover {
@@ -236,30 +242,49 @@ nav ul li a:hover {
 .pink-card { background-color: #ffe4e1; }
 .yellow-card { background-color: #fff9c4; }
 
-.project-image {
+.thumbnail {
+    width: 100%;
     height: 250px;
-    width: 250px;
-    background-color: rgba(255, 255, 255, 0.5); 
+    object-fit: cover;
+    border-radius: 20px 20px 0 0; /* Hanya lengkung di atas */
+    box-shadow: none; /* Hapus shadow bawaan img */
 }
 
 .project-info {
     padding: 1.5rem;
+    flex-grow: 1; /* Mendorong tombol ke bawah */
 }
 
 .project-info h3 {
     margin-bottom: 0.5rem;
     font-weight: 700;
+    font-size: 1.5rem;
+    color: #333;
 }
 
-/* Contact Section Styles */
+.project-info a {
+    display: inline-block;
+    margin-top: 10px;
+    color: #e63e82;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/* ====================================================
+   CONTACT SECTION
+   ==================================================== */
 .contact-section {
     padding: 100px 10%;
     background-color: #fbf4eb;
+    position: relative; /* Untuk animasi background */
+    overflow: hidden;
 }
 
 .contact-container {
     max-width: 1000px;
     margin: 0 auto;
+    position: relative;
+    z-index: 2;
 }
 
 .contact-header {
@@ -272,10 +297,8 @@ nav ul li a:hover {
     font-weight: 900;
 }
 
-.highlight {
+.pink-text {
     color: #e63e82;
-    position: relative;
-    z-index: 1;
 }
 
 .contact-wrapper {
@@ -287,6 +310,13 @@ nav ul li a:hover {
     border-radius: 30px;
     box-shadow: 0 20px 40px rgba(255, 77, 148, 0.1); 
     border: 3px solid #ffecb3; 
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 25px;
 }
 
 .info-item {
@@ -302,16 +332,11 @@ nav ul li a:hover {
     border-radius: 12px;
 }
 
-.pink-text{
-    color: #e63e82
-}
-
 .info-item p {
     font-weight: 600;
     color: #444;
 }
 
-/* Form Styling */
 .contact-form {
     display: flex;
     flex-direction: column;
@@ -356,112 +381,46 @@ nav ul li a:hover {
     box-shadow: 0 10px 20px rgba(255, 77, 148, 0.2);
 }
 
-/* Responsive */
-@media (max-width: 850px) {
-    .contact-wrapper {
-        grid-template-columns: 1fr;
-    }
-    .contact-info {
-        order: 2;
-        text-align: center;
-        align-items: center;
-    }
-}
-
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-  padding: 20px 30px;
-}
-
-.gallery img {
-  width: 100%;
-}
-
-img {
-  border-radius: 10px; 
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-}
-
-img p {
-    text-align:end;
-    margin-top: 10px;
-    font-size: 16px;
-}
-
-/* Footer */
+/* ====================================================
+   FOOTER
+   ==================================================== */
 footer {
     text-align: center;
-    padding: 50px;
+    padding: 30px 10%;
     background-color: #ff4d94;
     color: white;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .hero h1 { font-size: 2.5rem; }
-}
-
-/* Info Kontak */
-.contact-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 25px;
-}
-
-/* Dokumentasi Section 1*/
-.project {
-  display: flex;
-  gap: 40px;
-  align-items: center;
-  padding: 2rem 10%
-}
-
-.project-img img {
-  width: 400px;
-  border-radius: 10px;
-}
-
-.project-desc {
-  max-width: 500px;
-}
-
-.project:nth-child(even) {
-  flex-direction: row-reverse;
-}
-
-
-
-/* Pengaturan Animasi Background */
-.bg-animation {
+/* ====================================================
+   BACKGROUND ANIMATION
+   ==================================================== */
+.header-bg-animation, .content-bg-animation {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     z-index: 1;
+    pointer-events: none; /* Mencegah animasi menutupi klik tombol */
 }
 
 .shape {
     position: absolute;
-    filter: blur(20px); /* Membuat efek soft/lucu agar tidak mengganggu mata */
+    filter: blur(20px); 
     opacity: 0.4;
     animation: floating 15s infinite alternate ease-in-out;
 }
 
-/* Variasi Warna dan Posisi */
 .circle-pink {
     width: 150px; height: 150px;
-    background: #FFADBC; /* Soft Pink */
+    background: #FFADBC; 
     border-radius: 50%;
     top: 10%; left: 10%;
 }
 
 .circle-yellow {
     width: 200px; height: 200px;
-    background: #FFE69A; /* Soft Yellow */
+    background: #FFE69A; 
     border-radius: 50%;
     bottom: 15%; right: 10%;
     animation-delay: -2s;
@@ -490,15 +449,68 @@ footer {
     bottom: -50px; left: 40%;
 }
 
-/* Keyframes untuk gerakan lucu */
 @keyframes floating {
-    0% {
-        transform: translate(0, 0) rotate(0deg) scale(1);
+    0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+    50% { transform: translate(30px, -50px) rotate(10deg) scale(1.1); }
+    100% { transform: translate(-20px, 20px) rotate(-10deg) scale(1); }
+}
+
+/* ====================================================
+   MEDIA QUERIES (MOBILE RESPONSIVE FIXES)
+   ==================================================== */
+@media (max-width: 850px) {
+    .contact-wrapper {
+        grid-template-columns: 1fr;
     }
-    50% {
-        transform: translate(30px, -50px) rotate(10deg) scale(1.1);
+    .contact-info {
+        order: 2;
+        text-align: center;
+        align-items: center;
     }
-    100% {
-        transform: translate(-20px, 20px) rotate(-10deg) scale(1);
+    .info-item {
+        flex-direction: column; /* Icon di atas teks di HP */
+        gap: 5px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Navigasi menjadi tumpuk */
+    nav {
+        flex-direction: column;
+        gap: 20px;
+        padding: 1.5rem 5%;
+    }
+    nav ul li {
+        margin-left: 0;
+        margin: 5px 10px;
+    }
+
+    /* Mengecilkan Hero Text */
+    .hero {
+        padding: 60px 5%;
+    }
+    .hero h1 { 
+        font-size: 2.2rem; 
+    }
+    .hero p {
+        font-size: 1.1rem;
+    }
+
+    /* Menyesuaikan padding tiap section agar tidak terlalu sempit di HP */
+    .about-section, .skill-section, .work-content h2, .contact-section {
+        padding: 60px 5%;
+    }
+
+    .portfolio-grid {
+        padding: 0 5% 60px 5%;
+        grid-template-columns: 1fr; /* 1 kolom di HP */
+    }
+
+    .about-content h2, .skill-content h2, .work-content h2 {
+        font-size: 2rem;
+    }
+
+    .contact-header h2 {
+        font-size: 2.2rem;
     }
 }
