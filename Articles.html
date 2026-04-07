@@ -2,8 +2,10 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
+    <!-- Ini syarat wajib agar tidak zoom-out di HP -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Articles</title>
+    <title>Articles - Portofolio</title>
+    <!-- Memanggil CSS utama yang sama -->
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
@@ -12,6 +14,7 @@
     <nav>
         <div class="logo">Darin Azzahra</div>
         <ul>
+            <!-- Link sudah benar kembali ke index.html -->
             <li><a href="index.html#about">About</a></li>
             <li><a href="index.html#skill">Skill</a></li>
             <li><a href="index.html#work">Work</a></li>
@@ -24,58 +27,55 @@
         <p>Berikut ini beberapa artikel yang telah aku buat.</p>
     </header>
 
-    <section class="project">
-        <div class="project-card pink-card"> 
-            <div class="thumbnail"></div>
-                <img src="Image/Untitled-2.png" class="thumbnail" alt="preview">
+    <!-- Menggunakan class work-section sebagai background -->
+    <section class="work-section" style="padding-top: 50px;">
+        
+        <!-- MENGGUNAKAN PORTFOLIO-GRID AGAR RESPONSIVE (1 kolom di HP, berjejer di PC) -->
+        <div class="portfolio-grid">
+            
+            <div class="project-card pink-card"> 
+                <!-- Menghapus <div class="thumbnail"> yang dobel/kosong, langsung pakai img saja -->
+                <img src="Image/Untitled-2.png" class="thumbnail" alt="Unitas DKV" onerror="this.src='https://via.placeholder.com/400x250/ff85a1/ffffff?text=Unitas+DKV'">
                 <div class="project-info">
                     <h3>Unitas DKV Adakan Pameran Akhir Semester</h3>
                     <p>Hard News</p>
-                    <a href="http://www.lpmprogress.com/post/unitas-dkv-adakan-pameran-akhir-semester">Lihat Detail</a>
+                    <a href="http://www.lpmprogress.com/post/unitas-dkv-adakan-pameran-akhir-semester" target="_blank">Lihat Detail</a>
                 </div>
-        </div>
+            </div>
 
-        <div class="project-card yellow-card"> 
-            <div class="thumbnail"></div>
-                <img src="Image/thumbnail artikel 2.png" class="thumbnail" alt="preview">
+            <div class="project-card yellow-card"> 
+                <img src="Image/thumbnail artikel 2.png" class="thumbnail" alt="Pengambilan Ijazah" onerror="this.src='https://via.placeholder.com/400x250/ffd93d/ffffff?text=Pengambilan+Ijazah'">
                 <div class="project-info">
-                    <h3>Pengambilan Ijazah,
-                    Unindra Mewajibkan Ikuti Wisuda</h3>
+                    <h3>Pengambilan Ijazah, Unindra Mewajibkan Ikuti Wisuda</h3>
                     <p>Soft News</p>
-                    <a href="http://www.lpmprogress.com/post/pengambilan-ijazah-unindra-mewajibkan-ikuti-wisuda">Lihat Detail</a>
+                    <a href="http://www.lpmprogress.com/post/pengambilan-ijazah-unindra-mewajibkan-ikuti-wisuda" target="_blank">Lihat Detail</a>
                 </div>
-        </div>
+            </div>
 
-        <div class="project-card pink-card"> 
-            <div class="thumbnail"></div>
-                <img src="Image/Untitled-3.png" class="thumbnail" alt="preview">
+            <div class="project-card pink-card"> 
+                <img src="Image/Untitled-3.png" class="thumbnail" alt="Membedah Peran Media" onerror="this.src='https://via.placeholder.com/400x250/ff85a1/ffffff?text=Peran+Media'">
                 <div class="project-info">
                     <h3>Membedah Peran Media dalam Membentuk Citra Korban Kekerasan Seksual</h3>
                     <p>Hard News</p>
-                    <a href="http://www.lpmprogress.com/post/ketik-camp-public-forum-membedah-peran-media-dalam-membentuk-citra-korban-kekerasan-seksual">Lihat Detail</a>
+                    <a href="http://www.lpmprogress.com/post/ketik-camp-public-forum-membedah-peran-media-dalam-membentuk-citra-korban-kekerasan-seksual" target="_blank">Lihat Detail</a>
                 </div>
-        </div>
+            </div>
 
-        <div class="project-card yellow-card"> 
-            <div class="thumbnail"></div>
-                <img src="Image/how to make millions before grandma dies (2024).jpg" class="thumbnail" alt="preview">
+            <div class="project-card yellow-card"> 
+                <img src="Image/how to make millions before grandma dies (2024).jpg" class="thumbnail" alt="Review Film" onerror="this.src='https://via.placeholder.com/400x250/ffd93d/ffffff?text=Review+Film'">
                 <div class="project-info">
-                    <h3>Memaknai Arti Keluarga dalam Film
-                    "How to Make Millions Before Grandma dies"</h3>
+                    <h3>Memaknai Arti Keluarga dalam Film "How to Make Millions Before Grandma Dies"</h3>
                     <p>Soft News</p>
-                    <a href="http://www.lpmprogress.com/post/memaknai-arti-keluarga-dalam-film-how-to-make-millions-before-grandma-dies">Lihat Detail</a>
+                    <a href="http://www.lpmprogress.com/post/memaknai-arti-keluarga-dalam-film-how-to-make-millions-before-grandma-dies" target="_blank">Lihat Detail</a>
                 </div>
+            </div>
+
         </div>
     </section>
 
    <footer>
-        <p>© 2026 Darin Azzahra. Marketing & Communication Enthusiast. Let's create something cute together!</p>
-    </footer>
+       <p>© 2026 Darin Azzahra. Marketing & Communication Enthusiast. Let's create something cute together!</p>
+   </footer>
 
 </body>
 </html>
-
-
-    
-
-
