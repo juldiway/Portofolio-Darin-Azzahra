@@ -6,12 +6,360 @@
     <title>Visual Design</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* Container Utama Galeri */
+        .gallery {
+            display: flex;
+            overflow-x: auto; /* Aktifkan geser horizontal */
+            scroll-snap-type: x mandatory; /* Efek "mengunci" seperti buku */
+            gap: 20px;
+            padding: 20px;
+            scrollbar-width: none; /* Hilangkan scrollbar di Firefox */
+            -ms-overflow-style: none; /* Hilangkan scrollbar di IE/Edge */
+            cursor: grab;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Hilangkan scrollbar di Chrome, Safari, dan Opera */
+        .gallery::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Styling Setiap Gambar */
+        .gallery img {
+            flex: 0 0 80%; /* Lebar gambar 80% dari layar agar terlihat ada gambar selanjutnya */
+            scroll-snap-align: center; /* Gambar otomatis berhenti di tengah */
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            object-fit: cover;
+            height: 500px; /* Tinggi default untuk PC */
+            transition: transform 0.3s ease;
+        }
+
+        /* Efek visual pada PC */
+        @media (min-width: 1024px) {
+            .gallery img {
+                flex: 0 0 60%; /* Di PC, gambar sedikit lebih kecil agar estetis */
+                height: 600px;
+            }
+        }
+
+        /* Responsif untuk HP */
+        @media (max-width: 768px) {
+            .gallery img {
+                flex: 0 0 90%; /* Di HP, gambar hampir memenuhi layar */
+                height: 400px;
+            }
+        }
+
+        /* Instruksi Tambahan */
+        .slide-hint {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        /* ====================================================
+           RESET & BASE STYLES
+           ==================================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #fffafb; 
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative; /* Penting untuk animasi background */
+        }
+
+        /* ====================================================
+           ANIMASI BACKGROUND (FLOATING SHAPES)
+           ==================================================== */
+        .bg-animation {
+            position: fixed; /* Tetap di posisi saat di-scroll */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Di belakang semua konten */
+            overflow: hidden;
+            pointer-events: none; /* Tidak bisa diklik */
+        }
+
+        .shape {
+            position: absolute;
+            display: block;
+            opacity: 0.2; /* Sangat transparan agar lembut */
+            animation: float 20s infinite linear; /* Panggil animasi */
+        }
+
+        /* Variasi Warna Pastel */
+        .shape-pink { background-color: #ffb6c1; }
+        .shape-yellow { background-color: #ffe4b5; }
+        .shape-blue { background-color: #b0e0e6; }
+
+        /* Definisi Bentuk dan Posisi Acak */
+        .shape:nth-child(1) { width: 80px; height: 80px; border-radius: 50%; top: 10%; left: 10%; animation-duration: 25s; }
+        .shape:nth-child(2) { width: 50px; height: 50px; border-radius: 10px; top: 40%; left: 80%; animation-duration: 18s; animation-delay: -2s; }
+        .shape:nth-child(3) { width: 120px; height: 120px; border-radius: 50%; top: 70%; left: 15%; animation-duration: 30s; animation-delay: -5s; }
+        .shape:nth-child(4) { width: 70px; height: 70px; top: 80%; left: 60%; animation-duration: 22s; animation-delay: -10s; }
+        .shape:nth-child(5) { width: 40px; height: 40px; border-radius: 50%; top: 20%; left: 90%; animation-duration: 15s; }
+        .shape:nth-child(6) { width: 100px; height: 100px; border-radius: 15px; top: 50%; left: 5%; animation-duration: 28s; animation-delay: -3s; }
+        .shape:nth-child(7) { width: 60px; height: 60px; border-radius: 50%; top: 85%; left: 85%; animation-duration: 20s; animation-delay: -7s; }
+        .shape:nth-child(8) { width: 90px; height: 90px; top: 5%; left: 70%; animation-duration: 26s; }
+
+        /* Definisi Gerakan Animasi Float */
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.2;
+            }
+            50% {
+                transform: translateY(-50px) rotate(180deg); /* Bergerak naik dan berputar */
+                opacity: 0.3; /* Sedikit lebih jelas di tengah */
+            }
+            100% {
+                transform: translateY(0) rotate(360deg); /* Kembali ke posisi semula */
+                opacity: 0.2;
+            }
+        }
+
+        /* ====================================================
+           NAVIGATION
+           ==================================================== */
+        nav {
+            display: flex;
+            background-color: #fcedd8;
+            border-bottom: 3px solid #9E182B;
+            justify-content: space-between;
+            padding: 2rem 10%;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-weight: 900;
+            font-size: 2.0rem;
+            color: #ff4d94; 
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #9E182B;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #ffcc00; 
+        }
+
+        /* ====================================================
+           HERO SECTION
+           ==================================================== */
+        .hero {
+            position: relative;
+            text-align: center;
+            padding: 100px 10%;
+            background-color: #ffd464;
+            overflow: hidden;
+            margin-bottom: 3rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* Tambahan shadow halus */
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .pink-text {
+            color: #ff4d94;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            font-weight: 700;
+            position: relative;
+            z-index: 2;
+            color: #9E182B;
+        }
+
+        /* ====================================================
+           MASONRY GALLERY (PINTEREST STYLE)
+           ==================================================== */
+        .gallery-main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 5% 100px 5%;
+            position: relative; /* Menjaga agar konten grid tetap di atas animasi */
+            z-index: 1;
+        }
+
+        .masonry-grid {
+            column-count: 1;
+            column-gap: 1.5rem;
+        }
+
+        @media (min-width: 640px) { .masonry-grid { column-count: 2; } }
+        @media (min-width: 900px) { .masonry-grid { column-count: 3; } }
+        @media (min-width: 1200px) { .masonry-grid { column-count: 4; } }
+
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 1.5rem;
+            position: relative;
+            border-radius: 16px; /* Sudut halus ala pinterest */
+            overflow: hidden;
+            background-color: #eaeaea;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .masonry-item:hover {
+            transform: translateY(-5px); /* Melayang saat dihover */
+            box-shadow: 0 15px 25px rgba(255, 77, 148, 0.2); /* Shadow pinkish */
+        }
+
+        .masonry-item img {
+            width: 100%;
+            display: block;
+            height: auto;
+            transition: transform 0.6s ease;
+        }
+
+        .masonry-item:hover img {
+            transform: scale(1.08); /* Zoom gambar */
+        }
+
+        /* Hover Overlay Transparan */
+        .project-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.4) 60%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 1rem; /* Diperkecil agar area gambar kecil tetap aman */
+        }
+
+        .masonry-item:hover .project-overlay {
+            opacity: 1;
+        }
+
+        /* Teks Judul dan Deskripsi dalam Hover */
+        .overlay-text h2 {
+            color: #ff4d94; /* Warna pink dari tema kamu */
+            font-size: 1.05rem; /* Diperkecil untuk mengakomodasi gambar landscape */
+            font-weight: 900;
+            margin: 0 0 0.3rem 0; /* Margin diperkecil */
+            transform: translateY(15px);
+            transition: transform 0.4s ease;
+            line-height: 1.2;
+        }
+
+        .overlay-text p {
+            color: #fff;
+            font-size: 0.8rem; /* Diperkecil agar tidak menumpuk */
+            line-height: 1.4;
+            margin: 0;
+            font-weight: 400;
+            transform: translateY(15px);
+            transition: transform 0.4s ease 0.05s;
+            
+            /* Memotong teks maksimal 3 baris */
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .masonry-item:hover .overlay-text h2,
+        .masonry-item:hover .overlay-text p {
+            transform: translateY(0);
+        }
+
+        /* ====================================================
+           FOOTER
+           ==================================================== */
+        footer {
+            text-align: center;
+            padding: 30px 10%;
+            background-color: #ff4d94;
+            color: white;
+            font-weight: 700;
+            position: relative;
+            z-index: 10; /* Berada di atas animasi */
+        }
+
+        /* ====================================================
+           MEDIA QUERIES (MOBILE FIXES)
+           ==================================================== */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 20px;
+                padding: 1.5rem 5%;
+            }
+            nav ul li {
+                margin-left: 0;
+                margin: 5px 10px;
+            }
+            .hero {
+                padding: 60px 5%;
+            }
+            .hero h1 { 
+                font-size: 2.2rem; 
+            }
+            .hero p {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
 </head>
 <body class="work-page">
+
+    <div class="bg-animation">
+        <span class="shape shape-pink"></span>
+        <span class="shape shape-yellow"></span>
+        <span class="shape shape-blue"></span>
+        <span class="shape shape-pink"></span>
+        <span class="shape shape-yellow"></span>
+        <span class="shape shape-blue"></span>
+        <span class="shape shape-pink"></span>
+        <span class="shape shape-yellow"></span>
+    </div>
 
     <nav>
         <div class="logo">Darin Azzahra</div>
         <ul>
+            <li><a href="index.html#home">Home</a></li>
             <li><a href="index.html#about">About</a></li>
             <li><a href="index.html#skill">Skill</a></li>
             <li><a href="index.html#work">Work</a></li>
@@ -25,14 +373,15 @@
     </header>
 
     <section>
+        <p class="slide-hint">← Geser ke samping untuk melihat lebih banyak →</p>
         <div class="gallery">
-             <img src="Image/warta 1.jpeg">
-             <img src="Image/warta 2.jpeg">
-             <img src="Image/warta 3.jpeg">
-             <img src="Image/warta 4.jpeg">
-             <img src="Image/warta 5.jpeg">
-             <img src="Image/warta 6.jpeg">
-             <img src="Image/warta 7.jpeg">
+            <img src="Image/warta 1.jpeg">
+            <img src="Image/warta 2.jpeg">
+            <img src="Image/warta 3.jpeg">
+            <img src="Image/warta 4.jpeg">
+            <img src="Image/warta 5.jpeg">
+            <img src="Image/warta 6.jpeg">
+            <img src="Image/warta 7.jpeg">
         </div>
     </section>
 
