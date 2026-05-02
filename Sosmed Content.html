@@ -6,6 +6,46 @@
     <title>Sosmed Content - Center Layout</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
+         /* ====================================================
+           ANIMASI BACKGROUND (FLOATING SHAPES)
+           ==================================================== */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .shape {
+            position: absolute;
+            display: block;
+            opacity: 0.2;
+            animation: float 20s infinite linear;
+        }
+
+        .shape-pink { background-color: #ffb6c1; }
+        .shape-yellow { background-color: #ffe4b5; }
+        .shape-blue { background-color: #b0e0e6; }
+
+        .shape:nth-child(1) { width: 80px; height: 80px; border-radius: 50%; top: 10%; left: 10%; animation-duration: 25s; }
+        .shape:nth-child(2) { width: 50px; height: 50px; border-radius: 10px; top: 40%; left: 80%; animation-duration: 18s; animation-delay: -2s; }
+        .shape:nth-child(3) { width: 120px; height: 120px; border-radius: 50%; top: 70%; left: 15%; animation-duration: 30s; animation-delay: -5s; }
+        .shape:nth-child(4) { width: 70px; height: 70px; top: 80%; left: 60%; animation-duration: 22s; animation-delay: -10s; }
+        .shape:nth-child(5) { width: 40px; height: 40px; border-radius: 50%; top: 20%; left: 90%; animation-duration: 15s; }
+        .shape:nth-child(6) { width: 100px; height: 100px; border-radius: 15px; top: 50%; left: 5%; animation-duration: 28s; animation-delay: -3s; }
+        .shape:nth-child(7) { width: 60px; height: 60px; border-radius: 50%; top: 85%; left: 85%; animation-duration: 20s; animation-delay: -7s; }
+        .shape:nth-child(8) { width: 90px; height: 90px; top: 5%; left: 70%; animation-duration: 26s; }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.2; }
+            50% { transform: translateY(-50px) rotate(180deg); opacity: 0.3; }
+            100% { transform: translateY(0) rotate(360deg); opacity: 0.2; }
+        }
+        
         /* ====================================================
            STYLING UNTUK ANIMASI BACKGROUND (FLOATING SHAPES)
            ==================================================== */
@@ -205,6 +245,17 @@
 </head>
 <body>
 
+    <div class="bg-animation">
+        <span class="shape shape-pink"></span>
+        <span class="shape shape-yellow"></span>
+        <span class="shape shape-blue"></span>
+        <span class="shape shape-pink"></span>
+        <span class="shape shape-yellow"></span>
+        <span class="shape shape-blue"></span>
+        <span class="shape shape-pink"></span>
+        <span class="shape shape-yellow"></span>
+    </div>
+
     <nav>
         <div class="logo">Darin Azzahra</div>
         <ul>
@@ -231,12 +282,16 @@
             <!-- Monitor -->
             <div class="monitor">
                 <div class="monitor-screen" id="mainScreen">
+                     <img src="Image/visual design 7.jpeg" alt="Design 7"> 
                      <img src="Image/visual design 1.jpeg" alt="Design 1">
                      <img src="Image/visual design 2.jpeg" alt="Design 2">
                      <img src="Image/visual design 3.jpeg" alt="Design 3">
                      <img src="Image/visual design 4.jpeg" alt="Design 4">
                      <img src="Image/visual design 5.jpeg" alt="Design 5">
                      <img src="Image/visual design 6.jpeg" alt="Design 6">
+                     <img src="Image/Marketing 2.jpeg" alt="Marketing">
+                     <img src="Image/Marketing 3.jpeg" alt="Marketing">
+                     <img src="Image/logo.jpeg" alt="logo">
                 </div>
             </div>
         </div>
