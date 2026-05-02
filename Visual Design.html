@@ -4,63 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Visual Design</title>
-    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        /* Container Utama Galeri */
-        .gallery {
-            display: flex;
-            overflow-x: auto; /* Aktifkan geser horizontal */
-            scroll-snap-type: x mandatory; /* Efek "mengunci" seperti buku */
-            gap: 20px;
-            padding: 20px;
-            scrollbar-width: none; /* Hilangkan scrollbar di Firefox */
-            -ms-overflow-style: none; /* Hilangkan scrollbar di IE/Edge */
-            cursor: grab;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        /* Hilangkan scrollbar di Chrome, Safari, dan Opera */
-        .gallery::-webkit-scrollbar {
-            display: none;
-        }
-
-        /* Styling Setiap Gambar */
-        .gallery img {
-            flex: 0 0 80%; /* Lebar gambar 80% dari layar agar terlihat ada gambar selanjutnya */
-            scroll-snap-align: center; /* Gambar otomatis berhenti di tengah */
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            object-fit: cover;
-            height: 500px; /* Tinggi default untuk PC */
-            transition: transform 0.3s ease;
-        }
-
-        /* Efek visual pada PC */
-        @media (min-width: 1024px) {
-            .gallery img {
-                flex: 0 0 60%; /* Di PC, gambar sedikit lebih kecil agar estetis */
-                height: 600px;
-            }
-        }
-
-        /* Responsif untuk HP */
-        @media (max-width: 768px) {
-            .gallery img {
-                flex: 0 0 90%; /* Di HP, gambar hampir memenuhi layar */
-                height: 400px;
-            }
-        }
-
-        /* Instruksi Tambahan */
-        .slide-hint {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #888;
-            font-size: 0.9rem;
-        }
-
         /* ====================================================
            RESET & BASE STYLES
            ==================================================== */
@@ -76,36 +21,34 @@
             color: #333;
             line-height: 1.6;
             overflow-x: hidden;
-            position: relative; /* Penting untuk animasi background */
+            position: relative;
         }
 
         /* ====================================================
            ANIMASI BACKGROUND (FLOATING SHAPES)
            ==================================================== */
         .bg-animation {
-            position: fixed; /* Tetap di posisi saat di-scroll */
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1; /* Di belakang semua konten */
+            z-index: -1;
             overflow: hidden;
-            pointer-events: none; /* Tidak bisa diklik */
+            pointer-events: none;
         }
 
         .shape {
             position: absolute;
             display: block;
-            opacity: 0.2; /* Sangat transparan agar lembut */
-            animation: float 20s infinite linear; /* Panggil animasi */
+            opacity: 0.2;
+            animation: float 20s infinite linear;
         }
 
-        /* Variasi Warna Pastel */
         .shape-pink { background-color: #ffb6c1; }
         .shape-yellow { background-color: #ffe4b5; }
         .shape-blue { background-color: #b0e0e6; }
 
-        /* Definisi Bentuk dan Posisi Acak */
         .shape:nth-child(1) { width: 80px; height: 80px; border-radius: 50%; top: 10%; left: 10%; animation-duration: 25s; }
         .shape:nth-child(2) { width: 50px; height: 50px; border-radius: 10px; top: 40%; left: 80%; animation-duration: 18s; animation-delay: -2s; }
         .shape:nth-child(3) { width: 120px; height: 120px; border-radius: 50%; top: 70%; left: 15%; animation-duration: 30s; animation-delay: -5s; }
@@ -115,20 +58,10 @@
         .shape:nth-child(7) { width: 60px; height: 60px; border-radius: 50%; top: 85%; left: 85%; animation-duration: 20s; animation-delay: -7s; }
         .shape:nth-child(8) { width: 90px; height: 90px; top: 5%; left: 70%; animation-duration: 26s; }
 
-        /* Definisi Gerakan Animasi Float */
         @keyframes float {
-            0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 0.2;
-            }
-            50% {
-                transform: translateY(-50px) rotate(180deg); /* Bergerak naik dan berputar */
-                opacity: 0.3; /* Sedikit lebih jelas di tengah */
-            }
-            100% {
-                transform: translateY(0) rotate(360deg); /* Kembali ke posisi semula */
-                opacity: 0.2;
-            }
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.2; }
+            50% { transform: translateY(-50px) rotate(180deg); opacity: 0.3; }
+            100% { transform: translateY(0) rotate(360deg); opacity: 0.2; }
         }
 
         /* ====================================================
@@ -184,7 +117,7 @@
             background-color: #ffd464;
             overflow: hidden;
             margin-bottom: 3rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* Tambahan shadow halus */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
         .hero h1 {
@@ -209,118 +142,93 @@
         }
 
         /* ====================================================
-           MASONRY GALLERY (PINTEREST STYLE)
+           SLIDER GALLERY WITH NAVIGATION BUTTONS
            ==================================================== */
-        .gallery-main {
-            max-width: 1200px;
+        .gallery-container {
+            position: relative;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 0 5% 100px 5%;
-            position: relative; /* Menjaga agar konten grid tetap di atas animasi */
-            z-index: 1;
+            padding: 0 20px;
         }
 
-        .masonry-grid {
-            column-count: 1;
-            column-gap: 1.5rem;
-        }
-
-        @media (min-width: 640px) { .masonry-grid { column-count: 2; } }
-        @media (min-width: 900px) { .masonry-grid { column-count: 3; } }
-        @media (min-width: 1200px) { .masonry-grid { column-count: 4; } }
-
-        .masonry-item {
-            break-inside: avoid;
-            margin-bottom: 1.5rem;
-            position: relative;
-            border-radius: 16px; /* Sudut halus ala pinterest */
-            overflow: hidden;
-            background-color: #eaeaea;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .masonry-item:hover {
-            transform: translateY(-5px); /* Melayang saat dihover */
-            box-shadow: 0 15px 25px rgba(255, 77, 148, 0.2); /* Shadow pinkish */
-        }
-
-        .masonry-item img {
-            width: 100%;
-            display: block;
-            height: auto;
-            transition: transform 0.6s ease;
-        }
-
-        .masonry-item:hover img {
-            transform: scale(1.08); /* Zoom gambar */
-        }
-
-        /* Hover Overlay Transparan */
-        .project-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.4) 60%, transparent 100%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
+        .gallery {
             display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 1rem; /* Diperkecil agar area gambar kecil tetap aman */
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 20px;
+            padding: 20px 0;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            cursor: grab;
         }
 
-        .masonry-item:hover .project-overlay {
-            opacity: 1;
+        .gallery::-webkit-scrollbar {
+            display: none;
         }
 
-        /* Teks Judul dan Deskripsi dalam Hover */
-        .overlay-text h2 {
-            color: #ff4d94; /* Warna pink dari tema kamu */
-            font-size: 1.05rem; /* Diperkecil untuk mengakomodasi gambar landscape */
-            font-weight: 900;
-            margin: 0 0 0.3rem 0; /* Margin diperkecil */
-            transform: translateY(15px);
-            transition: transform 0.4s ease;
-            line-height: 1.2;
+        .gallery img {
+            flex: 0 0 80%;
+            scroll-snap-align: center;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            object-fit: cover;
+            height: 500px;
+            transition: transform 0.3s ease;
         }
 
-        .overlay-text p {
-            color: #fff;
-            font-size: 0.8rem; /* Diperkecil agar tidak menumpuk */
-            line-height: 1.4;
-            margin: 0;
-            font-weight: 400;
-            transform: translateY(15px);
-            transition: transform 0.4s ease 0.05s;
-            
-            /* Memotong teks maksimal 3 baris */
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        .masonry-item:hover .overlay-text h2,
-        .masonry-item:hover .overlay-text p {
-            transform: translateY(0);
-        }
-
-        /* ====================================================
-           FOOTER
-           ==================================================== */
-        footer {
-            text-align: center;
-            padding: 30px 10%;
-            background-color: #ff4d94;
+        /* Tombol Geser (Next & Prev) */
+        .nav-btn {
+            position: absolute;
+            top: 55%;
+            transform: translateY(-50%);
+            background: rgba(255, 77, 148, 0.8);
             color: white;
-            font-weight: 700;
-            position: relative;
-            z-index: 10; /* Berada di atas animasi */
+            border: none;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: background 0.3s, transform 0.2s;
         }
 
-        /* ====================================================
-           MEDIA QUERIES (MOBILE FIXES)
-           ==================================================== */
+        .nav-btn:hover {
+            background: rgba(255, 77, 148, 1);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .nav-btn:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+
+        .nav-btn.prev {
+            left: 5px;
+        }
+
+        .nav-btn.next {
+            right: 5px;
+        }
+
+        .slide-hint {
+            text-align: center;
+            margin-bottom: 10px;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        /* Responsif Layout */
+        @media (min-width: 1024px) {
+            .gallery img {
+                flex: 0 0 60%;
+                height: 600px;
+            }
+        }
+
         @media (max-width: 768px) {
             nav {
                 flex-direction: column;
@@ -340,6 +248,28 @@
             .hero p {
                 font-size: 1.1rem;
             }
+            .gallery img {
+                flex: 0 0 90%;
+                height: 400px;
+            }
+            /* Menyembunyikan tombol di HP agar tidak menutupi gambar */
+            .nav-btn {
+                display: none;
+            }
+        }
+
+        /* ====================================================
+           FOOTER
+           ==================================================== */
+        footer {
+            text-align: center;
+            padding: 30px 10%;
+            background-color: #ff4d94;
+            color: white;
+            font-weight: 700;
+            position: relative;
+            z-index: 10;
+            margin-top: 50px;
         }
     </style>
 </head>
@@ -372,22 +302,39 @@
         <p>Berikut ini beberapa visual designs yang telah aku buat.</p>
     </header>
 
-    <section>
-        <p class="slide-hint">← Geser ke samping untuk melihat lebih banyak →</p>
-        <div class="gallery">
-            <img src="Image/warta 1.jpeg">
-            <img src="Image/warta 2.jpeg">
-            <img src="Image/warta 3.jpeg">
-            <img src="Image/warta 4.jpeg">
-            <img src="Image/warta 5.jpeg">
-            <img src="Image/warta 6.jpeg">
-            <img src="Image/warta 7.jpeg">
+    <section class="gallery-container">
+        <p class="slide-hint">← Geser ke samping atau gunakan tombol untuk melihat lebih banyak →</p>
+        
+        <button class="nav-btn prev" onclick="scrollGallery(-1)">&#10094;</button>
+        <button class="nav-btn next" onclick="scrollGallery(1)">&#10095;</button>
+
+        <div class="gallery" id="visualGallery">
+            <img src="Image/warta 1.jpeg" alt="Warta 1">
+            <img src="Image/warta 2.jpeg" alt="Warta 2">
+            <img src="Image/warta 3.jpeg" alt="Warta 3">
+            <img src="Image/warta 4.jpeg" alt="Warta 4">
+            <img src="Image/warta 5.jpeg" alt="Warta 5">
+            <img src="Image/warta 6.jpeg" alt="Warta 6">
+            <img src="Image/warta 7.jpeg" alt="Warta 7">
         </div>
     </section>
 
     <footer>
         <p>© 2026 Darin Azzahra. Marketing & Communication Enthusiast. Let's create something cute together!</p>
     </footer>
+
+    <script>
+        function scrollGallery(direction) {
+            const gallery = document.getElementById('visualGallery');
+            // Menghitung lebar gambar yang terlihat untuk menentukan jarak geser
+            const scrollAmount = gallery.clientWidth * 0.8; 
+            
+            gallery.scrollBy({
+                left: direction * scrollAmount,
+                behavior: 'smooth'
+            });
+        }
+    </script>
 
 </body>
 </html>

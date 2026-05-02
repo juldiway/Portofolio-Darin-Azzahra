@@ -1,10 +1,9 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sosmed Content</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Sosmed Content - Center Layout</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         /* ====================================================
@@ -73,6 +72,206 @@
                 transform: translateY(0) rotate(360deg); /* Kembali ke posisi semula */
             }
         }
+
+        /* ====================================================
+           BASE STYLES
+           ==================================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 80px 10%;
+            background-color: #ffd464;
+        }
+
+        .pink-text { color: #ff4d94; font-weight: 900; }
+
+        /* ====================================================
+           CENTERED MONITOR LAYOUT
+           ==================================================== */
+        .pc-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Memastikan semua elemen (monitor, stand, base) rata tengah */
+            justify-content: center;
+            padding: 50px 0;
+            width: 100%;
+        }
+
+        /* Wrapper untuk Monitor dan Tombol */
+        .monitor-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 950px; /* Memberi ruang untuk tombol di samping monitor */
+            padding: 0 70px; /* Ruang khusus untuk tombol agar tidak menabrak monitor */
+        }
+
+        .monitor {
+            width: 100%;
+            max-width: 800px;
+            background: #333;
+            border: 15px solid #222;
+            border-radius: 15px 15px 0 0;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            z-index: 2;
+        }
+
+        .monitor-screen {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #fff;
+            overflow-x: auto;
+            display: flex;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none; /* Firefox */
+            scroll-behavior: smooth;
+        }
+
+        .monitor-screen::-webkit-scrollbar { display: none; } /* Chrome/Safari */
+
+        .monitor-screen img {
+            min-width: 100%;
+            height: 100%;
+            object-fit: contain;
+            scroll-snap-align: center;
+        }
+
+        /* Tombol Navigasi */
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #ff4d94;
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            z-index: 10;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .nav-btn:hover { background: #ff75ac; transform: translateY(-50%) scale(1.1); }
+        .btn-prev { left: 10px; } /* Menempel di kiri kontainer */
+        .btn-next { right: 10px; } /* Menempel di kanan kontainer */
+
+        /* Kaki & Base Monitor (Selalu di Tengah) */
+        .monitor-stand {
+            width: 120px;
+            height: 40px;
+            background: #444;
+            z-index: 1;
+        }
+
+        .monitor-base {
+            width: 250px;
+            height: 15px;
+            background: #333;
+            border-radius: 5px;
+        }
+
+        .instruction {
+            margin-top: 30px;
+            font-weight: bold;
+            color: #666;
+        }
+
+        /* Sembunyikan tombol di HP */
+        @media (max-width: 768px) {
+            .nav-btn { display: none; }
+            .monitor-wrapper { padding: 0 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Darin Azzahra</div>
+        <ul>
+            <li><a href="index.html#home">Home</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#skill">Skill</a></li>
+            <li><a href="index.html#work">Work</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <h1><span class="pink-text">Social Media Content</span></h1>
+        <p>Gunakan tombol di bawah untuk melihat koleksi desainku.</p>
+    </header>
+
+    <section class="pc-container">
+        
+        <div class="monitor-wrapper">
+            <!-- Tombol Navigasi -->
+            <button class="nav-btn btn-prev" onclick="scrollMonitor(-1)">&#10094;</button>
+            <button class="nav-btn btn-next" onclick="scrollMonitor(1)">&#10095;</button>
+
+            <!-- Monitor -->
+            <div class="monitor">
+                <div class="monitor-screen" id="mainScreen">
+                     <img src="Image/visual design 1.jpeg" alt="Design 1">
+                     <img src="Image/visual design 2.jpeg" alt="Design 2">
+                     <img src="Image/visual design 3.jpeg" alt="Design 3">
+                     <img src="Image/visual design 4.jpeg" alt="Design 4">
+                     <img src="Image/visual design 5.jpeg" alt="Design 5">
+                     <img src="Image/visual design 6.jpeg" alt="Design 6">
+                </div>
+            </div>
+        </div>
+
+        <!-- Bagian Kaki Monitor -->
+        <div class="monitor-stand"></div>
+        <div class="monitor-base"></div>
+
+        <p class="instruction">← Geser atau gunakan tombol untuk melihat karya lainnya →</p>
+    </section>
+
+    <script>
+        function scrollMonitor(direction) {
+            const screen = document.getElementById('mainScreen');
+            const scrollAmount = screen.clientWidth; // Jarak geser sesuai lebar layar monitor
+            screen.scrollBy({
+                left: direction * scrollAmount,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sosmed Content</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        
 
 
         /* ====================================================
@@ -212,57 +411,6 @@
             font-weight: bold;
         }
     </style>
-</head>
-<body class="work-page">
-
-    <nav>
-        <div class="logo">Darin Azzahra</div>
-        <ul>
-            <li><a href="index.html#home">Home</a></li>
-            <li><a href="index.html#about">About</a></li>
-            <li><a href="index.html#skill">Skill</a></li>
-            <li><a href="index.html#work">Work</a></li>
-            <li><a href="index.html#contact">Contact</a></li>
-        </ul>
-    </nav>
-
-    <header class="hero">
-        <div class="bg-animation">
-            <span class="shape circle-pink"></span>
-            <span class="shape circle-yellow"></span>
-            <span class="shape square-pink"></span>
-            <span class="shape circle-yellow"></span>
-        </div>
-
-        <h1><span class="pink-text">Social Media Content</span></h1>
-        <p>Berikut ini desain di media sosial yang telah aku buat.</p>
-    </header>
-
-    <section class="pc-container">
-        <div class="bg-animation">
-            <span class="shape square-pink"></span>
-            <span class="shape circle-yellow"></span>
-            <span class="shape circle-pink"></span>
-            <span class="shape square-pink"></span>
-        </div>
-
-        <div class="monitor">
-            <div class="monitor-screen">
-                 <img src="Image/visual design 1.jpeg" alt="Design 1">
-                 <img src="Image/visual design 2.jpeg" alt="Design 2">
-                 <img src="Image/visual design 3.jpeg" alt="Design 3">
-                 <img src="Image/visual design 4.jpeg" alt="Design 4">
-                 <img src="Image/visual design 5.jpeg" alt="Design 5">
-                 <img src="Image/visual design 6.jpeg" alt="Design 6">
-                 <img src="Image/logo.jpeg" alt="Logo">
-                 <img src="Image/visual design 7.jpeg" alt="Design 7">
-            </div>
-        </div>
-        <div class="monitor-stand"></div>
-        <div class="monitor-base"></div>
-
-        <p class="instruction">← Geser layar ke samping untuk melihat karya lainnya →</p>
-    </section>
 
    <footer>
         <p>© 2026 Darin Azzahra. Marketing & Communication Enthusiast. Let's create something cute together!</p>
